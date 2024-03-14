@@ -13,6 +13,7 @@ export default function Search(props) {
 
         axios.get(baseUrl)
             .then(response => {
+                console.log("Respuesta: " + JSON.stringify(response.data));
                 setWeatherData({
                     ready: true,
                     city: response.data.city,
@@ -30,7 +31,7 @@ export default function Search(props) {
                 console.error('Error fetching data:', error);
                 setLoading(false);
             });
-    }, []);
+    }, [props.defaultCity]);
 
     if (loading) {
         return <h1>Loading...</h1>;
