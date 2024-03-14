@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import MainWeather from "./MainWeather"
+import MainWeather from "./MainWeather";
 
 export default function Search(props) {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [weatherData, setWeatherData] = useState({ ready: false });
+    const [city, setCity] = useState(props.defaultCity);
 
     useEffect(() => {
+        if (!city) return;
+
         const apiKey = "d09a0fd0aaod658935ba4280ebb33t01";
-        const city = props.defaultCity;
         const baseUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
+        setLoading(true);
 
         axios.get(baseUrl)
             .then(response => {
-                console.log("Respuesta: " + JSON.stringify(response.data));
                 setWeatherData({
                     ready: true,
                     city: response.data.city,
@@ -23,23 +26,27 @@ export default function Search(props) {
                     time: response.data.time,
                     description: response.data.condition.description,
                     icon_url: response.data.condition.icon_url
-
                 });
-                setLoading(false);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
+            })
+            .finally(() => {
                 setLoading(false);
             });
-    }, [props.defaultCity]);
+    }, [city]);
 
-    if (loading) {
-        return <h1>Loading...</h1>;
+    function handleSubmit(e) {
+        e.preventDefault();
+        const newCity = e.target.elements.city.value.trim();
+        if (newCity) {
+            setCity(newCity);
+        }
     }
 
     return (
         <div className="container">
-            <form id="search-form" className="search-form">
+            <form id="search-form" className="search-form" onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-sm-8">
                         <input
@@ -48,14 +55,15 @@ export default function Search(props) {
                             placeholder="Enter a city..."
                             required
                             className="search-form-input"
+                            name="city"
                         />
                     </div>
                     <div className="col-sm-4">
-                        <input type="submit" value="Search" className="search-form-button" />
+                        <button type="submit" className="search-form-button">Search</button>
                     </div>
                 </div>
             </form>
-            {weatherData.ready && <MainWeather weatherData={weatherData} />}
+            {loading ? <div class="spinner-border text-light" role="status"></div> : weatherData.ready && <MainWeather weatherData={weatherData} />}
         </div>
     );
 }

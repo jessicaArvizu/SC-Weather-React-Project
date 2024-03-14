@@ -18,7 +18,6 @@ const formatTime = (timestamp) => {
     return formattedTime;
 };
 
-
 const WeatherDisplay = ({ weatherData }) => {
     return (
         <div className="container">
@@ -67,7 +66,7 @@ const WeatherDisplay = ({ weatherData }) => {
             </div>
             <div className="row row-weather-details custom-details">
                 <p className="weather-app-details text-center w-100 ">
-                    <span id="time" className="text-capitalize">{formatTime(weatherData.time)}</span>,
+                    <span id="time" className="text-capitalize">{formatTime(weatherData.time)}</span>, 
                     <span id="weather-description" className="text-capitalize">{weatherData.description}</span>,
                     Humidity: <strong id="weather-humidity">{weatherData.humidity}%</strong>,
                     Wind: <strong id="weather-wind">{weatherData.wind}km/h</strong>
