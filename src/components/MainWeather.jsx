@@ -1,5 +1,4 @@
-import React from "react";
-import ReactAnimatedWeather from 'react-animated-weather';
+import React, { useState } from "react";
 import Icons from "./Icons";
 
 const formatTime = (timestamp) => {
@@ -13,6 +12,14 @@ const formatTime = (timestamp) => {
 };
 
 const WeatherDisplay = ({ weatherData }) => {
+    const [isCelsius, setIsCelsius] = useState(true);
+    const celsiusTemperature = Math.round(weatherData.temperature);
+    const fahrenheitTemperature = Math.round((weatherData.temperature * 9 / 5) + 32);
+
+    const toggleUnit = () => {
+        setIsCelsius(!isCelsius);
+    };
+
     return (
         <div className="container">
             <div className="row g-0">
@@ -28,12 +35,12 @@ const WeatherDisplay = ({ weatherData }) => {
                                         <div className="row g-0 row-weather-app-temperature">
                                             <div className="col-6 d-flex justify-content-center">
                                                 <div id="weather-app-temperature" className="weather-app-temperature">
-                                                    {Math.round(weatherData.temperature)}
+                                                    {isCelsius ? celsiusTemperature + "°C" : fahrenheitTemperature + "°F"}
                                                 </div>
                                             </div>
                                             <div className="col-6 d-flex justify-content-center">
-                                                <div id="weather-app-unit" className="weather-app-unit">
-                                                    °C
+                                                <div className="weather-app-unit" onClick={toggleUnit}>
+                                                    <a href="#" className={isCelsius ? "active" : ""}>°C</a> | <a href="#" className={!isCelsius ? "active" : ""}>°F</a>
                                                 </div>
                                             </div>
                                         </div>

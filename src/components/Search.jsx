@@ -17,6 +17,7 @@ export default function Search(props) {
 
         axios.get(baseUrl)
             .then(response => {
+                console.log(response.data);
                 setWeatherData({
                     ready: true,
                     city: response.data.city,
