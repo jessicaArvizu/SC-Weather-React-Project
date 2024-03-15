@@ -12,8 +12,6 @@ export default function Forecast(props) {
 
         axios.get(baseUrl)
             .then(response => {
-                console.log('Forecast api response', response.data);
-                // Slice the response data to include only the next 5 days
                 const nextFiveDaysData = response.data.daily.slice(0, 5);
                 setDailyForecast(nextFiveDaysData);
             }).catch(error => {

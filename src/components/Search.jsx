@@ -17,7 +17,6 @@ export default function Search(props) {
 
         axios.get(baseUrl)
             .then(response => {
-                console.log(response.data);
                 setWeatherData({
                     ready: true,
                     city: response.data.city,
@@ -47,9 +46,9 @@ export default function Search(props) {
     }
 
     return (
-        <div className="container">
+        <div>
             <form id="search-form" className="search-form" onSubmit={handleSubmit}>
-                <div className="row g-0">
+                <div className="row">
                     <div className="col-sm-8">
                         <input
                             id="search-form-input"
