@@ -20,17 +20,17 @@ export default function Forecast(props) {
     }, [props.city]);
 
     return (
-        <div className="forecast forecast--row">
-            <div id="weekly-forecast" className="forecast__weekly-forecast">
-                <div className="row forecast__daily-container">
+        <div className="row forecast">
+            <div className="forecast__weekly">
+                <div className="row">
                     {dailyForecast.map((dayData, index) => (
-                        <div key={index} className="col forecast__daily">
-                            <div className="forecast__daily-content text-center">
+                        <div key={index} className="col">
+                            <div className="text-center">
                                 <div className="forecast__day">{daysOfWeek[(new Date(dayData.time * 1000)).getDay()]}</div>
                                 <Icons code={dayData.condition.icon} alt={dayData.condition.description} size={36} />
                                 <div className="forecast__temperature">
-                                    <span className="forecast__temperature-max">°{Math.round(dayData.temperature.maximum)}</span>
-                                    <span className="forecast__temperature-min">°{Math.round(dayData.temperature.minimum)}</span>
+                                    <span className="forecast__temperature-max">°{Math.round(dayData.temperature.maximum)} </span> | 
+                                    <span className="forecast__temperature-min"> °{Math.round(dayData.temperature.minimum)} </span>
                                 </div>
                             </div>
                         </div>

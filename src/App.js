@@ -10,10 +10,6 @@ function App() {
           <Search defaultCity="London" />
         </header>
 
-        <main>
-          {/* Your main content goes here */}
-        </main>
-
         <footer>
           This project was coded by
           <a href="https://www.linkedin.com/in/jessica-arvizu/" target="_blank" rel="noopener noreferrer">
