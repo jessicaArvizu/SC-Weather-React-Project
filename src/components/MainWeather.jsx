@@ -39,8 +39,8 @@ const WeatherDisplay = ({ weatherData }) => {
                                                 </div>
                                             </div>
                                             <div className="col-6 d-flex justify-content-center">
-                                                <div className="weather-app-unit" onClick={toggleUnit}>
-                                                    <a href="#" className={isCelsius ? "active" : ""}>°C</a> | <a href="#" className={!isCelsius ? "active" : ""}>°F</a>
+                                                <div className="weather-app-unit" onClick={toggleUnit} style={{ cursor: 'pointer' }}>
+                                                    {isCelsius ? "°C | °F" : "°C | °F"}
                                                 </div>
                                             </div>
                                         </div>
