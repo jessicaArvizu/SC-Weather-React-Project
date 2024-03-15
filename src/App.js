@@ -1,18 +1,17 @@
-import React from 'react'
+import React from 'react';
 import './App.css';
 import Search from './components/Search';
 
 function App() {
   return (
     <div className="App">
-      <div className="container weather-app">
+      <div className="weather-app main container">
         <header>
           <Search defaultCity="London" />
         </header>
 
         <main>
-
-
+          {/* Your main content goes here */}
         </main>
 
         <footer>

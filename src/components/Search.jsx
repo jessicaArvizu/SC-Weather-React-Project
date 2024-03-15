@@ -49,19 +49,19 @@ export default function Search(props) {
     return (
         <div className="container">
             <form id="search-form" className="search-form" onSubmit={handleSubmit}>
-                <div className="row">
+                <div className="row g-0">
                     <div className="col-sm-8">
                         <input
                             id="search-form-input"
                             type="search"
                             placeholder="Enter a city..."
                             required
-                            className="search-form-input"
+                            className="search-form__input"
                             name="city"
                         />
                     </div>
                     <div className="col-sm-4">
-                        <button type="submit" className="search-form-button">Search</button>
+                        <button type="submit" className="search-form__button">Search</button>
                     </div>
                 </div>
             </form>
