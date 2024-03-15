@@ -1,12 +1,6 @@
 import React from "react";
 import ReactAnimatedWeather from 'react-animated-weather';
-
-const defaults = {
-    icon: 'CLEAR_DAY',
-    color: '#924da2',
-    size: 100,
-    animate: true
-};
+import Icons from "./Icons";
 
 const formatTime = (timestamp) => {
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -53,12 +47,7 @@ const WeatherDisplay = ({ weatherData }) => {
                     <div className="row">
                         <div className="col d-flex justify-content-center align-items-center flex-column">
                             <div id="weather-app-icon" className="weather-app-icon custom-icon w-100 p-0 text-center">
-                                <ReactAnimatedWeather
-                                    icon={defaults.icon}
-                                    color={defaults.color}
-                                    size={defaults.size}
-                                    animate={defaults.animate}
-                                />
+                                <Icons code={weatherData.icon} alt={weatherData.description} />
                             </div>
                         </div>
                     </div>
@@ -66,7 +55,7 @@ const WeatherDisplay = ({ weatherData }) => {
             </div>
             <div className="row row-weather-details custom-details">
                 <p className="weather-app-details text-center w-100 ">
-                    <span id="time" className="text-capitalize">{formatTime(weatherData.time)}</span>, 
+                    <span id="time" className="text-capitalize">{formatTime(weatherData.time)}</span>,
                     <span id="weather-description" className="text-capitalize">{weatherData.description}</span>,
                     Humidity: <strong id="weather-humidity">{weatherData.humidity}%</strong>,
                     Wind: <strong id="weather-wind">{weatherData.wind}km/h</strong>

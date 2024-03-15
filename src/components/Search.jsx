@@ -25,6 +25,7 @@ export default function Search(props) {
                     humidity: response.data.temperature.humidity,
                     time: response.data.time,
                     description: response.data.condition.description,
+                    icon: response.data.condition.icon,
                     icon_url: response.data.condition.icon_url
                 });
             })
@@ -63,7 +64,9 @@ export default function Search(props) {
                     </div>
                 </div>
             </form>
-            {loading ? <div class="spinner-border text-light" role="status"></div> : weatherData.ready && <MainWeather weatherData={weatherData} />}
+            {loading ?
+                <div className="spinner-border text-light" role="status"></div>
+                : weatherData.ready && <MainWeather weatherData={weatherData} />}
         </div>
     );
 }
